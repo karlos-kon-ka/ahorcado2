@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego del Ahorcado</title>
+</head>
+<body>
+    <h1>Juego del Ahorcado</h1>
+    <p>Palabra: {{ palabra_actual }}</p>
+    <p>Intentos restantes: {{ intentos_restantes }}</p>
+    
+    {% if intentos_restantes > 0 and '_' in palabra_actual %}
+        <form method="post" action="/">
+            <label for="letra">Ingrese una letra:</label>
+            <input type="text" name="letra" maxlength="1" pattern="[A-Za-z]" required>
+            <button type="submit">Intentar</button>
+        </form>
+    {% elif '_' not in palabra_actual %}
+        <p>¡Felicidades! Has adivinado la palabra.</p>
+    {% else %}
+        <p>¡Perdiste! La palabra era "{{ palabra_secreta }}".</p>
+    {% endif %}
+</body>
+</html>
